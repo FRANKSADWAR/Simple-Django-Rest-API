@@ -8,9 +8,6 @@ from rest_framework.response import Response
 from rest_framework import status 
 from rest_framework import schemas
 
-from rest_framework_swagger.views import get_swagger_view
-from rest_framework_swagger.renderers import OpenAPIRenderer, SwaggerUIRenderer
-
 
 
 
