@@ -23,7 +23,10 @@ def drink_list(request):
 
     ## the post view endpoint
     if request.method == "POST":
-        pass
+        serializer = DrinkSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
  
 def drink_view(request,id):
     pass
