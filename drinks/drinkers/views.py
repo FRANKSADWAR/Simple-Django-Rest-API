@@ -7,14 +7,18 @@ from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.response import Response
 from rest_framework import status 
 from rest_framework import schemas
+from drf_yasg.utils import swagger_auto_schema
 
 
 
 
 
 
+
+@swagger_auto_schema(method='POST',request_body=DrinkSerializer)
+@swagger_auto_schema(method='GET')
 @api_view(['GET','POST'])
-def drink_list(request, format=None):
+def drink_list(request):
 
     # get all the drinks
     # serialize the drinks
@@ -33,8 +37,12 @@ def drink_list(request, format=None):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+
+@swagger_auto_schema(method='get')
+@swagger_auto_schema(method='put',request_body=DrinkSerializer)
+@swagger_auto_schema(method='delete',request_body=DrinkSerializer)
 @api_view(['GET','PUT','DELETE']) 
-def drink_detail(request,id, format=None):
+def drink_detail(request,id):
     try:
         drink = Drink.objects.get(pk=id)
     except Drink.DoesNotExist :
